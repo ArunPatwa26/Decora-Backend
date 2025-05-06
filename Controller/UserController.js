@@ -26,9 +26,9 @@ module.exports = {
           try {
             const cloudinaryUpload = await cloudinary.uploader.upload(req.file.path, {
               folder: "users/images",
-              public_id: req.file.filename, // Optional: Set public ID
+              public_id: `${Date.now()}_${req.file.originalname}`, // ✅ Better unique ID
             });
-            cloudinaryImageUrl = cloudinaryUpload.secure_url; // ✅ Get Cloudinary URL
+            cloudinaryImageUrl = cloudinaryUpload.secure_url;
           } catch (uploadError) {
             return res.status(500).json({ message: "❌ Cloudinary upload failed", error: uploadError.message });
           }
@@ -49,7 +49,12 @@ module.exports = {
         // Save user to database
         await newUser.save();
 
-        res.status(201).json({ message: "✅ User Created Successfully", user: newUser });
+        // ✅ Add success flag so frontend knows it succeeded
+        res.status(201).json({
+          success: true,
+          message: "✅ User Created Successfully",
+          user: newUser,
+        });
       });
     } catch (error) {
       res.status(500).json({ message: "❌ Registration failed", error: error.message });

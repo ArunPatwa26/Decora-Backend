@@ -9,6 +9,7 @@ const adminRouter=require('./Routes/AdminRouter')
 const orderRouter=require('./Routes/OrderRouter')
 const analyticsRouter=require("./Routes/analyticsRoute")
 const cloudinary = require('./config/cloudinary');
+const reviewRoutes = require("./Routes/ReviewRoutes");
 const cors = require('cors');
 
 // Load environment variables
@@ -39,6 +40,7 @@ app.use('/api/user', userRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/cart', cartRouter);
 app.use('/api/analytics', analyticsRouter);
+app.use("/api/reviews", reviewRoutes);
 
 
 // Default Route
