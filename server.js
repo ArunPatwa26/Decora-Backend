@@ -7,7 +7,6 @@ const cartRouter=require('./Routes/CartRouter')
 const userRouter=require('./Routes/UserRouter')
 const adminRouter=require('./Routes/AdminRouter')
 const orderRouter=require('./Routes/OrderRouter')
-const analyticsRouter=require("./Routes/analyticsRoute")
 const cloudinary = require('./config/cloudinary');
 const reviewRoutes = require("./Routes/ReviewRoutes");
 const cors = require('cors');
